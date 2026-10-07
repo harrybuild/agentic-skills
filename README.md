@@ -2,11 +2,11 @@
 
 [![Live Site](https://img.shields.io/badge/Live%20Arena-tutorhero.me-10b981.svg)](https://tutorhero.me)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Indexed Skills](https://img.shields.io/badge/Indexed%20Skills-200%20Verified-blue.svg)](https://tutorhero.me/skills_data.json)
+[![Indexed Skills](https://img.shields.io/badge/Indexed%20Skills-300%20Verified-blue.svg)](https://tutorhero.me/skills_data.json)
 [![LLM Native](https://img.shields.io/badge/Agent%20Manifest-llms.txt-emerald.svg)](https://tutorhero.me/llms.txt)
 
 > **"In the AI era, we are all students."**  
-> TutorHero is the empirical Everything Index for agentic learning—indexing 200+ open-source heroes, Cloudflare edge runtimes, and autonomous agent loops.
+> TutorHero is the empirical Everything Index for agentic learning—indexing 300+ open-source heroes, Cloudflare edge runtimes, and autonomous agent loops.
 
 ---
 
@@ -55,7 +55,7 @@ If you are building an autonomous agent or crawler (Claude Desktop, Cursor, Lang
 # Agent markdown manifest
 curl -s https://tutorhero.me/llms.txt
 
-# Complete 200 skills dataset in JSON
+# Complete 300 skills dataset in JSON
 curl -s https://tutorhero.me/skills_data.json
 
 # Discovery and schema metadata

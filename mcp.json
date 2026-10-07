@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "name": "tutorhero-mcp",
+  "version": "1.0.0",
+  "description": "TutorHero Model Context Protocol (MCP) tool schema for agentic skills discovery, ELO benchmarks, and pairwise comparisons across 300 repositories.",
+  "endpoint": "https://tutorhero.me/api/mcp",
+  "tools": [
+    {
+      "name": "get_skill",
+      "description": "Fetches complete telemetry, verified architecture, token efficiency, and benchmark ELO for any of the 300 skills in TutorHero.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the skill or repository (e.g. 'vllm', 'claude-code', 'qdrant')"
+          }
+        },
+        "required": ["id"]
+      }
+    },
+    {
+      "name": "compare_skills",
+      "description": "Performs statistical head-to-head comparison between two repositories: delta ELO, speed multiple, token reduction, and web traffic.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "skill_a": {
+            "type": "string",
+            "description": "First skill identifier"
+          },
+          "skill_b": {
+            "type": "string",
+            "description": "Second skill identifier"
+          }
+        },
+        "required": ["skill_a", "skill_b"]
+      }
+    },
+    {
+      "name": "list_top10",
+      "description": "Returns dynamic Top 10 leaderboards filtered by domain category (coding, inference, rag, audio, reasoning).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["coding", "inference", "rag", "audio", "reasoning", "all"],
+            "description": "Category to filter leaderboard by"
+          }
+        }
+      }
+    },
+    {
+      "name": "search_skills",
+      "description": "Executes semantic and keyword search across all 300 skills, tags, architectures, and primary use cases.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Keywords or capability to search for"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "get_adoption_pulse",
+      "description": "Retrieves aggregate 7-day ecosystem star trajectory, median growth velocity, and breakout repos of the week.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}
