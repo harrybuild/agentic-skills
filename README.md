@@ -5,8 +5,19 @@
 [![Indexed Skills](https://img.shields.io/badge/Indexed%20Skills-300%20Verified-blue.svg)](https://tutorhero.me/skills_data.json)
 [![LLM Native](https://img.shields.io/badge/Agent%20Manifest-llms.txt-emerald.svg)](https://tutorhero.me/llms.txt)
 
-> **"In the AI era, we are all students."**  
-> TutorHero is the empirical Everything Index for agentic learning—indexing 300+ open-source heroes, Cloudflare edge runtimes, and autonomous agent loops.
+> **"The journey of learning new skills never stops."**  
+> In the intelligence era, we are all students. TutorHero is the empirical Everything Index for agentic learning—indexing 300+ open-source heroes, Cloudflare edge runtimes, and autonomous agent loops.
+
+---
+
+## 🚀 Latest Updates
+
+Published on **[TutorHero](https://tutorhero.me/)**:
+- **300 Live Skills & Subpages**: Expanded catalog to 300 verified open-source AI skills, each with dedicated subpages, continuous unhidden deep-dive sections, and pairwise Head-to-Head comparisons.
+- **Dynamic OG Image Engine**: A new homepage OG image, distinct secondary-page cards, and personalized previews for 300 live skills.
+- **Zero-Cost Edge Builds**: New SKUs automatically get their own cards during page builds (`scripts/generate_og_image.mjs`). No paid image APIs; unchanged images are cached. Verified live loading, 1200×630 dimensions, and image hashes.
+- **Native MCP Hub**: Unveiled `@tutorhero/mcp-server` protocol (`https://tutorhero.me/mcp`) with 5 curated Top 10 listicles and `/mcp.json` tool schema.
+- **Strict 100-per-Page Pagination**: Deterministic 100-item pagination with instant `[1] [2] [3]` navigation controls and zero visual clutter.
 
 ---
 
