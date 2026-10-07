@@ -1,0 +1,32 @@
+name: Validate Skills Catalog
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate skills_data.json Schema
+        run: |
+          node -e '
+            const fs = require("fs");
+            const data = JSON.parse(fs.readFileSync("skills_data.json", "utf8"));
+            if (!Array.isArray(data)) throw new Error("skills_data.json must be an array");
+            console.log("Total skills verified:", data.length);
+            const ids = new Set();
+            for (const s of data) {
+              if (!s.id || !s.name || !s.repo) throw new Error("Missing required field in " + JSON.stringify(s));
+              if (ids.has(s.id)) throw new Error("Duplicate ID: " + s.id);
+              ids.add(s.id);
+            }
+            console.log("All skills validated successfully!");
+          '

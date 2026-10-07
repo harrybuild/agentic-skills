@@ -1,0 +1,19 @@
+{
+  "entity": "TutorHero — The Everything Index for Agentic Learning in the AI Era",
+  "domain": "tutorhero.me",
+  "url": "https://tutorhero.me/",
+  "title": "TutorHero — The Everything Index for Agentic Learning",
+  "description": "In the AI era, we are all students. Empirical benchmark and open catalog for 200 public agentic skills, workflows, and tools from GitHub.",
+  "image": "https://tutorhero.me/og-skills-leaderboard.png",
+  "indexedSkillsCount": 200,
+  "scoringEngine": "Cloudflare Clef & Jev System One",
+  "sourcePolicy": "100% Public Open-Source GitHub Repositories Only",
+  "discovery": {
+    "thesis": "https://tutorhero.me/thesis",
+    "pricing": "https://tutorhero.me/pricing",
+    "llmsTxt": "https://tutorhero.me/llms.txt",
+    "sitemap": "https://tutorhero.me/sitemap.xml",
+    "skillsData": "https://tutorhero.me/skills_data.json"
+  },
+  "community": "https://github.com/harrybuild/agentic-skills"
+}
