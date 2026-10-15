@@ -13,11 +13,13 @@
 ## 🚀 Latest Updates
 
 Published on **[TutorHero](https://tutorhero.me/)**:
-- **300 Live Skills & Subpages**: Expanded catalog to 300 verified open-source AI skills, each with dedicated subpages, continuous unhidden deep-dive sections, and pairwise Head-to-Head comparisons.
-- **Dynamic OG Image Engine**: A new homepage OG image, distinct secondary-page cards, and personalized previews for 300 live skills.
-- **Zero-Cost Edge Builds**: New SKUs automatically get their own cards during page builds (`scripts/generate_og_image.mjs`). No paid image APIs; unchanged images are cached. Verified live loading, 1200×630 dimensions, and image hashes.
-- **Native MCP Hub**: Unveiled `@tutorhero/mcp-server` protocol (`https://tutorhero.me/mcp`) with 5 curated Top 10 listicles and `/mcp.json` tool schema.
-- **Strict 100-per-Page Pagination**: Deterministic 100-item pagination with instant `[1] [2] [3]` navigation controls and zero visual clutter.
+- **GitHub Trending Radar (`/trends/`)**: Real-time quadrant tracking daily star velocity, acceleration, and persona fit for 56+ breakout GitHub repositories via GH Archive and OSS Insight.
+- **Instant Search & Tracker Curation**: Global `/` keyboard shortcut to focus search, plus instant curation pills (`All Skills`, `Surging (>1%/wk)`, `High ELO (1300+)`, `#MCP`, `Bookmarked`) with live counts.
+- **Disciplined Minimal Aesthetic**: Purged saturated yellow accents in favor of a clean, focused shadcn-ui monochrome palette (`zinc-950`, `zinc-900`, `zinc-800`, `zinc-700`, `white`) with minimal emerald live status pulses.
+- **Commercial IA & Anti-Cannibalization ($N = 365$)**: Re-architected sitemap and routing to strict canonical standards (Loki Yan Protocol), eliminating alias conflicts while maintaining 100% indexing integrity.
+- **12-Hour Sovereign Free-LLM Cron**: Fully automated background pipeline evaluating new trending repos via Cloudflare Clef & Groq LPU at **$0.00 cash cost** with incremental on-disk caching.
+- **300 Live Skills & Dedicated Subpages**: 300 verified open-source AI skills, each with dedicated subpages, continuous deep-dive tabs, and pairwise Head-to-Head comparisons.
+- **Native MCP Hub**: `@tutorhero/mcp-server` protocol (`https://tutorhero.me/mcp`) with curated listicles and `/mcp.json` tool schema.
 
 ---
 

@@ -1,73 +1,236 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "name": "tutorhero-mcp",
-  "version": "1.0.0",
-  "description": "TutorHero Model Context Protocol (MCP) tool schema for agentic skills discovery, ELO benchmarks, and pairwise comparisons across 300 repositories.",
+  "version": "1.1.0",
+  "description": "TutorHero MCP: fastest-growing GitHub repos (daily, weekly, monthly), momentum quadrant, who each tool is for and where to use it, plus a 300-skill catalog. Star history measured daily from GH Archive.",
   "endpoint": "https://tutorhero.me/api/mcp",
+  "transport": "streamable-http",
   "tools": [
     {
-      "name": "get_skill",
-      "description": "Fetches complete telemetry, verified architecture, token efficiency, and benchmark ELO for any of the 300 skills in TutorHero.",
+      "name": "get_trending_repos",
+      "description": "Top GitHub repos by new stars measured from GH Archive for the last full day, last 7 days or last 30 days, with Jev labels for category, who it is for and where you would use it. Updated daily.",
       "parameters": {
         "type": "object",
         "properties": {
-          "id": {
+          "period": {
             "type": "string",
-            "description": "Unique identifier of the skill or repository (e.g. 'vllm', 'claude-code', 'qdrant')"
-          }
-        },
-        "required": ["id"]
-      }
-    },
-    {
-      "name": "compare_skills",
-      "description": "Performs statistical head-to-head comparison between two repositories: delta ELO, speed multiple, token reduction, and web traffic.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "skill_a": {
-            "type": "string",
-            "description": "First skill identifier"
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "default": "weekly"
           },
-          "skill_b": {
-            "type": "string",
-            "description": "Second skill identifier"
-          }
-        },
-        "required": ["skill_a", "skill_b"]
-      }
-    },
-    {
-      "name": "list_top10",
-      "description": "Returns dynamic Top 10 leaderboards filtered by domain category (coding, inference, rag, audio, reasoning).",
-      "parameters": {
-        "type": "object",
-        "properties": {
           "category": {
             "type": "string",
-            "enum": ["coding", "inference", "rag", "audio", "reasoning", "all"],
-            "description": "Category to filter leaderboard by"
+            "enum": [
+              "AGENTS",
+              "MODELS",
+              "DEVTOOLS",
+              "KNOWLEDGE",
+              "CREATIVE",
+              "LEARNING",
+              "APPS"
+            ],
+            "description": "Optional Jev category filter"
+          },
+          "persona": {
+            "type": "string",
+            "enum": [
+              "FOUNDERS",
+              "MARKETERS",
+              "AUDIO_CREATORS",
+              "SOFTWARE_ENGINEERS",
+              "RESEARCHERS",
+              "AI_OPS",
+              "DESIGNERS_MAKERS",
+              "EVERYDAY_LEARNERS"
+            ],
+            "description": "Optional: who the repo is for"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 10
           }
         }
       }
     },
     {
+      "name": "get_repo_growth",
+      "description": "Daily star history (last 30 days), 1/7/30-day gains, acceleration versus the prior three weeks, momentum quadrant, adoption signals (new PR and issue authors, forks per 1k stars), stargazer countries and Jev labels for a repo on the Trending Radar.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string",
+            "description": "owner/name, e.g. \"debpalash/VoiceStudio\""
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      }
+    },
+    {
+      "name": "get_momentum_quadrant",
+      "description": "Repos grouped by speed (new stars per day, last 7 days, vs the radar median) and acceleration (vs their own prior 3 weeks): rockets, cruising, waking, cooling.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "quadrant": {
+            "type": "string",
+            "enum": [
+              "rockets",
+              "cruising",
+              "waking",
+              "cooling"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "AGENTS",
+              "MODELS",
+              "DEVTOOLS",
+              "KNOWLEDGE",
+              "CREATIVE",
+              "LEARNING",
+              "APPS"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "find_tools_for",
+      "description": "Trending repos for a kind of person and/or a place of use (e.g. software engineers, in the code editor), fastest this week first.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "persona": {
+            "type": "string",
+            "enum": [
+              "FOUNDERS",
+              "MARKETERS",
+              "AUDIO_CREATORS",
+              "SOFTWARE_ENGINEERS",
+              "RESEARCHERS",
+              "AI_OPS",
+              "DESIGNERS_MAKERS",
+              "EVERYDAY_LEARNERS"
+            ]
+          },
+          "use_area": {
+            "type": "string",
+            "enum": [
+              "CODE_EDITOR",
+              "TERMINAL_CI",
+              "BROWSER_DESKTOP",
+              "LOCAL_GPU",
+              "CREATIVE_STUDIO",
+              "KNOWLEDGE_WORK",
+              "STUDY_DESK",
+              "EVERYDAY_LIFE"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 10
+          }
+        }
+      }
+    },
+    {
+      "name": "list_top10",
+      "description": "Top skills from the 300-skill TutorHero catalog, ranked by measured momentum (spike-trimmed weekly star growth), total stars or 30-day growth. Optional persona filter.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "type": "string",
+            "enum": [
+              "momentum",
+              "stars",
+              "monthly"
+            ],
+            "default": "momentum"
+          },
+          "persona": {
+            "type": "string",
+            "description": "Catalog persona, e.g. \"Autonomous Software Engineers\""
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 10
+          }
+        }
+      }
+    },
+    {
+      "name": "get_skill",
+      "description": "Catalog entry for a skill: description, use case, architecture, stars and measured growth. Editorial fields (rating, latency, tokens, traffic) are labelled as editorial.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Skill id, name or owner/repo, e.g. \"vllm\""
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "compare_skills",
+      "description": "Side-by-side measured stars and growth for two skills, plus their editorial fields.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "skill_a": {
+            "type": "string"
+          },
+          "skill_b": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_a",
+          "skill_b"
+        ]
+      }
+    },
+    {
       "name": "search_skills",
-      "description": "Executes semantic and keyword search across all 300 skills, tags, architectures, and primary use cases.",
+      "description": "Keyword search across skill names, repos, tags, descriptions and use cases.",
       "parameters": {
         "type": "object",
         "properties": {
           "query": {
-            "type": "string",
-            "description": "Keywords or capability to search for"
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 10
           }
         },
-        "required": ["query"]
+        "required": [
+          "query"
+        ]
       }
     },
     {
       "name": "get_adoption_pulse",
-      "description": "Retrieves aggregate 7-day ecosystem star trajectory, median growth velocity, and breakout repos of the week.",
+      "description": "This week across the catalog and the radar: median weekly growth, breakout skills, rockets, and one-day star spikes held out of the ranking.",
       "parameters": {
         "type": "object",
         "properties": {}
